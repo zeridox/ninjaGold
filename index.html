@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/gold.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@200&display=swap" rel="stylesheet">
+
+    <title>Gold Hunt</title>
+</head>
+<body>
+    <div class="wrapper">
+        <form action="gold.html" method="POST">
+            <div class="your-gold">
+                <h3>Your Gold {{ request.session.gold }}</h3>
+            </div>
+
+            <div class="container">
+
+                <div class="loc" id="farm">
+                    <h1>Farm</h1>
+                    <p>(Earns 10-20 gold)</p>
+                    <button name="farm">{{ request.session.farmreq }}</button>
+                </div>
+
+                <div class="loc" id="cave">
+                    <h1>Cave</h1>
+                    <p>(Earns 5-10 gold)</p>
+                    <button name="cave">{{ request.session.cavereq }}</button>
+                </div>
+
+                <div class="loc" id="house">
+                    <h1>House</h1>
+                    <p>(Earns 2-5 gold)</p>
+                    <button name="house">{{ request.session.housereq }}</button>
+                </div>
+
+                <div class="loc" id="casino">
+                    <h1>Casino</h1>
+                    <p>(Earns 0-50 gold)</p>
+                    <button name="casino">{{ request.session.casinoreq }}</button>
+                </div>
+            </div>
+        </form>
+
+        <div class="actions">
+            <h3>Activity Log</h3>
+            <div class="acts" id="acts">
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>

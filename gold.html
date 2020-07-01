@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/gold.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@200&display=swap" rel="stylesheet">
+
+    <title>Gold Hunt</title>
+</head>
+<body>
+    <div class="wrapper">
+            <div class="your-gold">
+                <h3>Your Gold {{request.session.gold}}</h3>
+                <a href="/reset"><h3>Cash Out!</h3></a>
+            </div>
+
+            <div class="container">
+
+                <div class="loc" id="farm">
+                    <form action="/next" method="POST">
+                        {% csrf_token %}
+                        <input type="hidden" name="place" value="farm">
+                        <h1>Farm</h1>
+                        <p>(Earns 10-20 gold)</p>
+                        <button>Find Gold!</button>
+                    </form>
+                </div>
+
+                <div class="loc" id="cave">
+                    <form action="/next" method="POST">
+                        {% csrf_token %}
+                        <input type="hidden" name="place" value="cave">
+                        <h1>Cave</h1>
+                        <p>(Earns 5-10 gold)</p>
+                        <button>Find Gold!</button>
+                        </form>
+                </div>
+
+                <div class="loc" id="house">
+                    <form action="/next" method="POST">
+                        {% csrf_token %}
+                        <input type="hidden" name="place" value="house">
+                        <h1>House</h1>
+                        <p>(Earns 2-5 gold)</p>
+                        <button>Find Gold!</button>
+                    </form>
+                </div>
+
+                <div class="loc" id="casino">
+                    <form action="/next" method="POST">
+                        {% csrf_token %}
+                        <input type="hidden" name="place" value="casino">
+                        <h1>Casino</h1>
+                        <p>(Earns 0-50 gold)</p>
+                        <button>Find Gold!</button>
+                    </form>
+                </div>
+            </div>
+        </form>
+
+        <div class="actions">
+            <div class="act">
+
+            {% for act in request.session.act reversed %}
+            <p class="{{ act.result }}">{{ act.message }}</p>
+            {% endfor %}   
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>
